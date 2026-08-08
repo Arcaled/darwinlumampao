@@ -95,7 +95,7 @@ export default function ClientForm({ config }: ClientFormProps) {
           type="text"
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
-          placeholder="E.g. John Doe"
+          placeholder="Juan Dela Cruz"
           required
           className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-950 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
         />
@@ -111,7 +111,7 @@ export default function ClientForm({ config }: ClientFormProps) {
           type="tel"
           value={mobileNumber}
           onChange={(e) => setMobileNumber(e.target.value)}
-          placeholder="E.g. +1 (555) 019-2834"
+          placeholder="09987654321"
           required
           className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-950 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
         />
@@ -127,7 +127,7 @@ export default function ClientForm({ config }: ClientFormProps) {
           type="text"
           value={jobBusiness}
           onChange={(e) => setJobBusiness(e.target.value)}
-          placeholder="E.g. Dropshipping Store Owner / Marketing Director"
+          placeholder="Store Owner, Clerk, Supervisor etc"
           required
           className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-950 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
         />

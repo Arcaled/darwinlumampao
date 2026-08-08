@@ -18,7 +18,7 @@ export const defaultLandingConfig: DomainConfig = {
   domain: "default",
   logoUrl: "/assets/images/logo.png",
   imageUrl: "/assets/images/image.png",
-  headline: "Scale Your E-commerce & Dropshipping Business To The Next Level",
+  headline: "Scale Your Revenue and learn how Dropshipping help your Business Grow",
   tagline: "Expert Facebook Ads & Digital Marketing strategies custom-built to maximize your ROAS, scale operations, and dominate the digital marketplace.",
   ctaText: "Get Free Marketing Strategy Consultation",
   emailRecipient: "darlumampao@gmail.com",
@@ -29,7 +29,7 @@ export const defaultLandingConfig: DomainConfig = {
   },
   features: [
     "High-converting landing pages built for scale",
-    "ROI-focused Facebook & TikTok ad campaigns",
+    "ROI-focused Facebook Ad & Digital Marketing",
     "Data-backed product sourcing & dropshipping operations",
     "Omnichannel digital marketing & brand strategy"
   ]

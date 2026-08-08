@@ -118,7 +118,7 @@ export default function Home() {
               Data-Driven Marketing That Outperforms Competitors
             </h2>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-              Our strategies cover every phase of your customer acquisition funnel. We focus heavily on creative testing, audience targeting optimization, and maximum automation so you can focus on building your brand.
+              We help individuals discover opportunities to benefit from established businesses while helping business owners grow through digital marketing, social media advertising, content creation, AI-powered automation, and innovative technology solutions designed to increase sales, reach more customers, and build sustainable growth.
             </p>
             <div className="grid grid-cols-2 gap-4">
               <div className="p-4 rounded-xl bg-white border border-slate-200">
@@ -126,14 +126,14 @@ export default function Home() {
                 <p className="text-xs text-slate-500 font-medium">Average Facebook Ad ROAS</p>
               </div>
               <div className="p-4 rounded-xl bg-white border border-slate-200">
-                <p className="text-2xl sm:text-3xl font-extrabold text-emerald-600">$12M+</p>
+                <p className="text-2xl sm:text-3xl font-extrabold text-emerald-600">₱12M+</p>
                 <p className="text-xs text-slate-500 font-medium">Client Revenue Generated</p>
               </div>
             </div>
           </div>
 
           {/* Main Visual Image (image.png) */}
-          <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-xl bg-white flex items-center justify-center p-2">
+          <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-xl bg-fefafa flex items-center justify-center p-2">
             <img
               src={config.imageUrl}
               alt="E-commerce Analytics and Scaling Visual"
