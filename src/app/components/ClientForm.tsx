@@ -60,15 +60,15 @@ export default function ClientForm({ config }: ClientFormProps) {
 
   if (status === "success") {
     return (
-      <div className="bg-emerald-950/40 border border-emerald-500/30 rounded-xl p-6 text-center space-y-4 animate-fade-in">
-        <CheckCircle className="w-12 h-12 text-emerald-400 mx-auto" />
-        <h4 className="text-lg font-bold text-white">Application Received!</h4>
-        <p className="text-sm text-slate-300 leading-relaxed">
+      <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-6 text-center space-y-4 animate-fade-in">
+        <CheckCircle className="w-12 h-12 text-emerald-600 mx-auto" />
+        <h4 className="text-lg font-bold text-slate-900">Application Received!</h4>
+        <p className="text-sm text-slate-700 leading-relaxed">
           Thank you for applying. We have sent your details to <strong>{config.emailRecipient}</strong>. An advisor will contact you within the next 24 business hours to map out your custom-built marketing audit.
         </p>
         <button
           onClick={() => setStatus("idle")}
-          className="text-xs text-emerald-400 hover:underline"
+          className="text-xs text-emerald-600 hover:underline font-semibold"
         >
           Submit another request
         </button>
@@ -79,15 +79,15 @@ export default function ClientForm({ config }: ClientFormProps) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {status === "error" && (
-        <div className="flex items-start gap-3 bg-rose-950/40 border border-rose-500/30 rounded-xl p-4 text-sm text-rose-300">
-          <AlertTriangle className="w-5 h-5 shrink-0 text-rose-400 mt-0.5" />
+        <div className="flex items-start gap-3 bg-rose-50 border border-rose-200 rounded-xl p-4 text-sm text-rose-700">
+          <AlertTriangle className="w-5 h-5 shrink-0 text-rose-600 mt-0.5" />
           <p>{errorMessage}</p>
         </div>
       )}
 
       {/* Full Name Input Field */}
       <div>
-        <label htmlFor="fullName" className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+        <label htmlFor="fullName" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
           Full Name <span className="text-rose-500">*</span>
         </label>
         <input
@@ -97,13 +97,13 @@ export default function ClientForm({ config }: ClientFormProps) {
           onChange={(e) => setFullName(e.target.value)}
           placeholder="E.g. John Doe"
           required
-          className="w-full bg-slate-950/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
+          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-950 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
         />
       </div>
 
       {/* Mobile Number Input Field */}
       <div>
-        <label htmlFor="mobileNumber" className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+        <label htmlFor="mobileNumber" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
           Mobile Number <span className="text-rose-500">*</span>
         </label>
         <input
@@ -113,13 +113,13 @@ export default function ClientForm({ config }: ClientFormProps) {
           onChange={(e) => setMobileNumber(e.target.value)}
           placeholder="E.g. +1 (555) 019-2834"
           required
-          className="w-full bg-slate-950/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
+          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-950 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
         />
       </div>
 
       {/* Job / Business Input Field */}
       <div>
-        <label htmlFor="jobBusiness" className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
+        <label htmlFor="jobBusiness" className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
           Job or Business Name <span className="text-rose-500">*</span>
         </label>
         <input
@@ -129,7 +129,7 @@ export default function ClientForm({ config }: ClientFormProps) {
           onChange={(e) => setJobBusiness(e.target.value)}
           placeholder="E.g. Dropshipping Store Owner / Marketing Director"
           required
-          className="w-full bg-slate-950/80 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
+          className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-950 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
         />
       </div>
 
@@ -137,7 +137,7 @@ export default function ClientForm({ config }: ClientFormProps) {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className={`w-full flex items-center justify-center gap-2 ${config.themeColor.primary} ${config.themeColor.primaryHover} text-white font-bold text-sm uppercase tracking-wider py-4 rounded-xl transition-all duration-300 transform active:scale-[0.99] disabled:opacity-50 disabled:pointer-events-none shadow-lg shadow-blue-500/20`}
+        className={`w-full flex items-center justify-center gap-2 ${config.themeColor.primary} ${config.themeColor.primaryHover} text-white font-bold text-sm uppercase tracking-wider py-4 rounded-xl transition-all duration-300 transform active:scale-[0.99] disabled:opacity-50 disabled:pointer-events-none shadow-md`}
       >
         {status === "submitting" ? (
           <>
@@ -149,7 +149,7 @@ export default function ClientForm({ config }: ClientFormProps) {
         )}
       </button>
 
-      <p className="text-[11px] text-center text-slate-500 leading-relaxed pt-2">
+      <p className="text-[11px] text-center text-slate-400 leading-relaxed pt-2">
         We respect your privacy. Safe & confidential. By clicking above, you agree to share this info directly with {config.emailRecipient}.
       </p>
     </form>
