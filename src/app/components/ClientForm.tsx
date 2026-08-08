@@ -137,7 +137,8 @@ export default function ClientForm({ config }: ClientFormProps) {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className={`w-full flex items-center justify-center gap-2 ${config.themeColor.primary} ${config.themeColor.primaryHover} text-white font-bold text-sm uppercase tracking-wider py-4 rounded-xl transition-all duration-300 transform active:scale-[0.99] disabled:opacity-50 disabled:pointer-events-none shadow-md`}
+        style={{ backgroundColor: config.themeColor.buttonBg }}
+        className="w-full flex items-center justify-center gap-2 text-white font-bold text-sm uppercase tracking-wider py-4 rounded-xl transition-all duration-300 transform active:scale-[0.99] disabled:opacity-50 disabled:pointer-events-none shadow-md hover:brightness-90"
       >
         {status === "submitting" ? (
           <>

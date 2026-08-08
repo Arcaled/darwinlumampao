@@ -7,9 +7,10 @@ export interface DomainConfig {
   ctaText: string;
   emailRecipient: string;
   themeColor: {
-    primary: string; // e.g. 'indigo-600'
+    primary: string;
     primaryHover: string;
     bgGradient: string;
+    buttonBg: string;
   };
   features: string[];
 }
@@ -20,12 +21,13 @@ export const defaultLandingConfig: DomainConfig = {
   imageUrl: "/assets/images/image.png",
   headline: "Scale Your Revenue and learn how Dropshipping help your Business Grow",
   tagline: "Expert Facebook Ads & Digital Marketing strategies custom-built to maximize your ROAS, scale operations, and dominate the digital marketplace.",
-  ctaText: "Get Free Marketing Strategy Consultation",
+  ctaText: "Get Free Conference Seat Now",
   emailRecipient: "darlumampao@gmail.com",
   themeColor: {
     primary: "bg-blue-600",
     primaryHover: "hover:bg-blue-700",
-    bgGradient: "from-slate-50 via-blue-50/30 to-slate-100"
+    bgGradient: "from-slate-50 via-blue-50/30 to-slate-100",
+    buttonBg: "#2563eb"
   },
   features: [
     "High-converting landing pages built for scale",
@@ -43,7 +45,8 @@ export const clientConfigs: Record<string, Partial<DomainConfig>> = {
     themeColor: {
       primary: "bg-emerald-600",
       primaryHover: "hover:bg-emerald-700",
-      bgGradient: "from-slate-50 via-emerald-50/30 to-slate-100"
+      bgGradient: "from-slate-50 via-emerald-50/30 to-slate-100",
+      buttonBg: "#059669"
     }
   },
   "fbadsmastery.net": {
@@ -53,7 +56,8 @@ export const clientConfigs: Record<string, Partial<DomainConfig>> = {
     themeColor: {
       primary: "bg-indigo-600",
       primaryHover: "hover:bg-indigo-700",
-      bgGradient: "from-slate-50 via-indigo-50/30 to-slate-100"
+      bgGradient: "from-slate-50 via-indigo-50/30 to-slate-100",
+      buttonBg: "#4f46e5"
     }
   }
 };

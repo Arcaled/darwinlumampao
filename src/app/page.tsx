@@ -13,34 +13,6 @@ export default function Home() {
   return (
     <div className={`min-h-screen bg-gradient-to-b ${config.themeColor.bgGradient} flex flex-col justify-between overflow-x-hidden`}>
 
-      {/* Header */}
-      <header className="border-b border-slate-200/80 backdrop-blur-md sticky top-0 z-50 bg-white/85">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <div className="relative h-12 w-48 flex items-center">
-            {/* Displaying Client Logo */}
-            <img
-              src={config.logoUrl}
-              alt="Logo"
-              className="max-h-full max-w-full object-contain filter brightness-90"
-            />
-          </div>
-          <div className="hidden md:flex items-center space-x-6 text-sm font-semibold text-slate-600">
-            <span className="hover:text-slate-900 transition-colors cursor-pointer">Dropshipping</span>
-            <span className="hover:text-slate-900 transition-colors cursor-pointer">E-commerce</span>
-            <span className="hover:text-slate-900 transition-colors cursor-pointer">Facebook Ads</span>
-            <span className="hover:text-slate-900 transition-colors cursor-pointer">Digital Marketing</span>
-          </div>
-          <div>
-            <a
-              href="#capture-form"
-              className={`text-xs sm:text-sm font-semibold text-white px-4 py-2.5 rounded-full ${config.themeColor.primary} ${config.themeColor.primaryHover} transition-all duration-300 shadow-md`}
-            >
-              Get Consultation
-            </a>
-          </div>
-        </div>
-      </header>
-
       {/* Main Hero & Lead Capture Section */}
       <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 

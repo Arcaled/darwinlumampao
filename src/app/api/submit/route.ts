@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { fullName, mobileNumber, jobBusiness, recipientEmail, domain } = body;
 
-    // Validate request payload
     if (!fullName || !mobileNumber || !jobBusiness) {
       return NextResponse.json(
         { error: "Full Name, Mobile Number, and Job/Business are required fields." },
@@ -16,14 +17,6 @@ export async function POST(req: NextRequest) {
 
     const emailToUse = recipientEmail || "darlumampao@gmail.com";
     const siteDomain = domain || "Dropshipping & Marketing Landing Page";
-
-    // Setup Nodemailer SMTP transport.
-    // We look for environment variables. On Vercel, the user can configure these.
-    // If not configured, we log the lead to the console and return success (elegant fallback).
-    const smtpHost = process.env.SMTP_HOST;
-    const smtpPort = process.env.SMTP_PORT;
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
 
     const emailHtmlContent = `
       <!DOCTYPE html>
@@ -65,43 +58,19 @@ export async function POST(req: NextRequest) {
               </div>
             </div>
             <div class="footer">
-              This lead was automatically captured on ${new Date().toLocaleString('en-US', { timeZone: 'UTC' })} UTC.
+              This lead was automatically captured on ${new Date().toLocaleString("en-US", { timeZone: "UTC" })} UTC.
             </div>
           </div>
         </body>
       </html>
     `;
 
-    if (smtpHost && smtpUser && smtpPass) {
-      const transporter = nodemailer.createTransport({
-        host: smtpHost,
-        port: Number(smtpPort) || 587,
-        secure: Number(smtpPort) === 465,
-        auth: {
-          user: smtpUser,
-          pass: smtpPass,
-        },
-      });
-
-      await transporter.sendMail({
-        from: `"Lead Generator" <${smtpUser}>`,
-        to: emailToUse,
-        subject: `[New Lead] ${fullName} - ${siteDomain}`,
-        html: emailHtmlContent,
-      });
-
-      console.log(`Lead sent successfully via SMTP for ${fullName}`);
-    } else {
-      // In development/fallback mode, log to server console
-      console.log("------------------ NEW LEAD CAPTURED ------------------");
-      console.log(`Domain: ${siteDomain}`);
-      console.log(`Recipient: ${emailToUse}`);
-      console.log(`Full Name: ${fullName}`);
-      console.log(`Mobile Number: ${mobileNumber}`);
-      console.log(`Job / Business: ${jobBusiness}`);
-      console.log("------------------------------------------------------");
-      console.log("Tip: Configure SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS on Vercel to activate live email delivery.");
-    }
+    await resend.emails.send({
+      from: "onboarding@resend.dev",
+      to: emailToUse,
+      subject: `[New Lead] ${fullName} - ${siteDomain}`,
+      html: emailHtmlContent,
+    });
 
     return NextResponse.json({ success: true, message: "Lead submitted successfully." });
   } catch (error: any) {
