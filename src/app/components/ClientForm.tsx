@@ -64,7 +64,7 @@ export default function ClientForm({ config }: ClientFormProps) {
         <CheckCircle className="w-12 h-12 text-emerald-600 mx-auto" />
         <h4 className="text-lg font-bold text-slate-900">Application Received!</h4>
         <p className="text-sm text-slate-700 leading-relaxed">
-          Thank you for applying. We have sent your details to <strong>{config.emailRecipient}</strong>. An advisor will contact you within the next 24 business hours to map out your custom-built marketing audit.
+          Thank you for applying. We have sent your details to <strong>{config.emailRecipient}</strong>. An advisor will contact you within the next 24 business hours to give you a schedule for upcoming conference in your area.
         </p>
         <button
           onClick={() => setStatus("idle")}
