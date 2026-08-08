@@ -25,7 +25,7 @@ export const defaultLandingConfig: DomainConfig = {
   themeColor: {
     primary: "bg-blue-600",
     primaryHover: "hover:bg-blue-700",
-    bgGradient: "from-slate-900 via-blue-950 to-slate-900"
+    bgGradient: "from-slate-50 via-blue-50/30 to-slate-100"
   },
   features: [
     "High-converting landing pages built for scale",
@@ -43,7 +43,7 @@ export const clientConfigs: Record<string, Partial<DomainConfig>> = {
     themeColor: {
       primary: "bg-emerald-600",
       primaryHover: "hover:bg-emerald-700",
-      bgGradient: "from-zinc-950 via-emerald-950 to-zinc-950"
+      bgGradient: "from-slate-50 via-emerald-50/30 to-slate-100"
     }
   },
   "fbadsmastery.net": {
@@ -53,7 +53,7 @@ export const clientConfigs: Record<string, Partial<DomainConfig>> = {
     themeColor: {
       primary: "bg-indigo-600",
       primaryHover: "hover:bg-indigo-700",
-      bgGradient: "from-slate-950 via-indigo-950 to-slate-950"
+      bgGradient: "from-slate-50 via-indigo-50/30 to-slate-100"
     }
   }
 };

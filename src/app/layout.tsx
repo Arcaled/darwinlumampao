@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="h-full scroll-smooth">
-      <body className={`${inter.className} min-h-screen antialiased text-slate-100 bg-slate-950`}>
+      <body className={`${inter.className} min-h-screen antialiased text-slate-800 bg-slate-50`}>
         {children}
       </body>
     </html>
