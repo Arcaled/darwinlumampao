@@ -2,75 +2,65 @@
 
 import React, { useState } from "react";
 import { DomainConfig } from "@/config/landing";
-import { Loader2, CheckCircle, AlertTriangle, Send } from "lucide-react";
+import { Loader2, CheckCircle, AlertTriangle, Send, User, Phone, Briefcase } from "lucide-react";
 
 interface ClientFormProps {
   config: DomainConfig;
 }
 
+const fields = [
+  { id: "fullName",     label: "Full Name",           placeholder: "e.g. Juan Dela Cruz",                    type: "text", icon: User },
+  { id: "mobileNumber", label: "Mobile Number",        placeholder: "e.g. 09987654321",                       type: "tel",  icon: Phone },
+  { id: "jobBusiness",  label: "Job or Business",      placeholder: "e.g. Store Owner, Software Engineer",    type: "text", icon: Briefcase },
+] as const;
+
 export default function ClientForm({ config }: ClientFormProps) {
-  const [fullName, setFullName] = useState("");
-  const [mobileNumber, setMobileNumber] = useState("");
-  const [jobBusiness, setJobBusiness] = useState("");
+  const [values, setValues] = useState({ fullName: "", mobileNumber: "", jobBusiness: "" });
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!fullName || !mobileNumber || !jobBusiness) {
+    if (!values.fullName || !values.mobileNumber || !values.jobBusiness) {
       setStatus("error");
       setErrorMessage("Please fill out all fields before submitting.");
       return;
     }
-
     setStatus("submitting");
     setErrorMessage("");
-
     try {
-      const response = await fetch("/api/submit", {
+      const res = await fetch("/api/submit", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fullName,
-          mobileNumber,
-          jobBusiness,
-          recipientEmail: config.emailRecipient,
-          domain: config.domain,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...values, recipientEmail: config.emailRecipient, domain: config.domain }),
       });
-
-      const data = await response.json();
-
-      if (response.ok) {
+      const data = await res.json();
+      if (res.ok) {
         setStatus("success");
-        setFullName("");
-        setMobileNumber("");
-        setJobBusiness("");
+        setValues({ fullName: "", mobileNumber: "", jobBusiness: "" });
       } else {
         setStatus("error");
         setErrorMessage(data.error || "An unexpected error occurred. Please try again.");
       }
-    } catch (err) {
+    } catch {
       setStatus("error");
-      setErrorMessage("Network error. Please verify your connection and try again.");
+      setErrorMessage("Network error. Please check your connection and try again.");
     }
   };
 
   if (status === "success") {
     return (
-      <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-6 text-center space-y-4 animate-fade-in backdrop-blur-md">
-        <div className="w-16 h-16 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mx-auto shadow-lg shadow-emerald-500/20">
-          <CheckCircle className="w-10 h-10 animate-bounce" />
+      <div className="text-center space-y-4 py-6">
+        <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto">
+          <CheckCircle className="w-9 h-9 text-emerald-500" />
         </div>
-        <h4 className="text-xl font-extrabold text-white">Application Received!</h4>
-        <p className="text-sm text-slate-300 leading-relaxed max-w-md mx-auto">
-          Thank you for applying. We have sent your details to <strong className="text-emerald-400">{config.emailRecipient}</strong>. An advisor will contact you within 24 business hours to confirm your schedule.
+        <h4 className="text-xl font-bold text-slate-900">Application Received!</h4>
+        <p className="text-sm text-slate-500 max-w-sm mx-auto leading-relaxed">
+          Thank you! We've sent your details to <strong className="text-emerald-600">{config.emailRecipient}</strong>. An advisor will contact you within 24 hours.
         </p>
         <button
           onClick={() => setStatus("idle")}
-          className="inline-block mt-2 px-4 py-2 text-xs font-bold text-emerald-400 hover:text-emerald-300 bg-emerald-500/10 hover:bg-emerald-500/20 rounded-lg border border-emerald-500/20 transition-all"
+          className="mt-2 text-sm font-semibold text-emerald-600 hover:text-emerald-700 underline underline-offset-2"
         >
           Submit another request
         </button>
@@ -79,83 +69,48 @@ export default function ClientForm({ config }: ClientFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit} className="space-y-4">
       {status === "error" && (
-        <div className="flex items-start gap-3 bg-rose-500/10 border border-rose-500/30 rounded-xl p-4 text-sm text-rose-300 animate-fade-in">
-          <AlertTriangle className="w-5 h-5 shrink-0 text-rose-400 mt-0.5" />
+        <div className="flex items-start gap-2.5 bg-red-50 border border-red-200 rounded-xl p-3.5 text-sm text-red-700">
+          <AlertTriangle className="w-4 h-4 shrink-0 mt-0.5" />
           <p>{errorMessage}</p>
         </div>
       )}
 
-      {/* Full Name Input Field */}
-      <div>
-        <label htmlFor="fullName" className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-          Full Name <span className="text-emerald-400">*</span>
-        </label>
-        <input
-          id="fullName"
-          type="text"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-          placeholder="e.g. Juan Dela Cruz"
-          required
-          className="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl px-4 py-3.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all duration-200 shadow-inner"
-        />
-      </div>
+      {fields.map(({ id, label, placeholder, type, icon: Icon }) => (
+        <div key={id}>
+          <label htmlFor={id} className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">
+            {label} <span className="text-emerald-500">*</span>
+          </label>
+          <div className="relative">
+            <Icon className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+            <input
+              id={id}
+              type={type}
+              value={values[id]}
+              onChange={(e) => setValues((v) => ({ ...v, [id]: e.target.value }))}
+              placeholder={placeholder}
+              required
+              className="w-full pl-10 pr-4 py-3 text-sm text-slate-900 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400 placeholder-slate-400 transition-all"
+            />
+          </div>
+        </div>
+      ))}
 
-      {/* Mobile Number Input Field */}
-      <div>
-        <label htmlFor="mobileNumber" className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-          Mobile Number <span className="text-emerald-400">*</span>
-        </label>
-        <input
-          id="mobileNumber"
-          type="tel"
-          value={mobileNumber}
-          onChange={(e) => setMobileNumber(e.target.value)}
-          placeholder="e.g. 09987654321"
-          required
-          className="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl px-4 py-3.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all duration-200 shadow-inner"
-        />
-      </div>
-
-      {/* Job / Business Input Field */}
-      <div>
-        <label htmlFor="jobBusiness" className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">
-          Job or Business Name <span className="text-emerald-400">*</span>
-        </label>
-        <input
-          id="jobBusiness"
-          type="text"
-          value={jobBusiness}
-          onChange={(e) => setJobBusiness(e.target.value)}
-          placeholder="e.g. Store Owner, Software Engineer, Freelancer"
-          required
-          className="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl px-4 py-3.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 transition-all duration-200 shadow-inner"
-        />
-      </div>
-
-      {/* Dynamic CTA Submit Button */}
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="w-full relative overflow-hidden group flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 hover:from-emerald-400 hover:to-teal-500 text-white font-extrabold text-sm uppercase tracking-wider py-4 rounded-xl transition-all duration-300 shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transform active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none shimmer-btn"
+        className="w-full flex items-center justify-center gap-2 py-3.5 text-sm font-bold text-white bg-emerald-500 hover:bg-emerald-600 rounded-xl shadow-lg shadow-emerald-500/25 transition-all active:scale-[0.98] disabled:opacity-60 disabled:pointer-events-none mt-2"
       >
         {status === "submitting" ? (
-          <>
-            <Loader2 className="w-5 h-5 animate-spin" />
-            <span>Sending Application...</span>
-          </>
+          <><Loader2 className="w-4 h-4 animate-spin" /> Sending...</>
         ) : (
-          <>
-            <span>{config.ctaText}</span>
-            <Send className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-          </>
+          <><span>{config.ctaText}</span><Send className="w-4 h-4" /></>
         )}
       </button>
 
-      <p className="text-[11px] text-center text-slate-400 leading-relaxed pt-1">
-        🔒 We respect your privacy. Safe & confidential. Details sent directly to {config.emailRecipient}.
+      <p className="text-[11px] text-center text-slate-400 pt-1">
+        🔒 Your data is safe & confidential. Sent directly to {config.emailRecipient}.
       </p>
     </form>
   );
