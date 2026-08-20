@@ -126,9 +126,9 @@ export default function Home() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
               {/* Image */}
-              <div className="relative">
+              <div className="relative flex justify-center">
                 <div className="absolute -inset-4 bg-gradient-to-br from-emerald-400/20 to-violet-400/20 rounded-3xl blur-2xl" />
-                <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-2xl bg-white">
+                <div className="relative w-64 sm:w-72 rounded-3xl overflow-hidden border border-slate-200 shadow-2xl bg-white">
                   <img
                     src="/assets/images/image.png"
                     alt="Darwin Lumampao"
@@ -174,7 +174,7 @@ export default function Home() {
 
             {/* Ecosystem */}
             <div className="mt-16 text-center space-y-4">
-              <h3 className="text-xl sm:text-2xl font-bold text-slate-800">The LEGACY INFIN8TY Ecosystem</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-800">The Ecosystem</h3>
               <p className="text-slate-500 text-sm max-w-xl mx-auto">
                 A comprehensive digital business framework built to support marketers, store owners, and remote professionals.
               </p>
