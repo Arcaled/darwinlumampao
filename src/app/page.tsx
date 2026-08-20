@@ -90,7 +90,9 @@ export default function Home() {
               Data-Driven Marketing That Outperforms Competitors
             </h2>
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-              We help individuals discover opportunities to benefit from established businesses while helping business owners grow through digital marketing, social media advertising, content creation, AI-powered automation, and innovative technology solutions designed to increase sales, reach more customers, and build sustainable growth.
+              Balancing a full-time career as a remote software developer taught me the value of efficiency, but I always wanted to expand my skill set beyond code. That opportunity came when my friend Glenn Bobis invited me to join the LEGACY INFIN8TY community.
+
+Stepping into this community was a game-changer. LEGACY INFIN8TY didn’t just help me grow personally—it gave me practical, high-income skills in digital marketing and Facebook Ads. In fact, doing this part-time alongside my developer job, I earned ₱48,000 during my first month. Today, I’m living proof that with the right community, mentorship, and marketing strategies, you don't have to trade all your time to multiply your income.
             </p>
             <div className="grid grid-cols-2 gap-4">
               <div className="p-4 rounded-xl bg-white border border-slate-200">
