@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -15,6 +13,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      console.warn("RESEND_API_KEY is not configured.");
+      return NextResponse.json({ success: true, message: "Submission simulated (no API key configured)." });
+    }
+
+    const resend = new Resend(apiKey);
     const emailToUse = recipientEmail || "darlumampao@gmail.com";
     const siteDomain = domain || "Dropshipping & Marketing Landing Page";
 
