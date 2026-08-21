@@ -2,6 +2,7 @@ import { headers } from "next/headers";
 import { getLandingConfig } from "@/config/landing";
 import ClientForm from "./components/ClientForm";
 import YouTubePlayer from "./components/YouTubePlayer";
+import Gallery from "./components/Gallery";
 import {
   Phone, Mail, Globe, Facebook, Twitter, Calendar,
   TrendingUp, ShieldCheck, CheckCircle2, Sparkles,
@@ -27,7 +28,7 @@ export default function Home() {
           </a>
 
           <nav className="hidden md:flex items-center gap-1">
-            {["About","Testimonials","Conference","Contact"].map((item) => (
+            {["About","Testimonials","Conference","Gallery","Contact"].map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -179,7 +180,7 @@ export default function Home() {
                 A comprehensive digital business framework built to support marketers, store owners, and remote professionals.
               </p>
               <div className="mt-6 rounded-3xl overflow-hidden border border-slate-200 shadow-xl bg-white p-3 max-w-4xl mx-auto card-hover">
-                <img src="/assets/images/ecosystem.png" alt="LEGACY INFIN8TY Ecosystem" className="w-full h-auto rounded-2xl" />
+                <img src="/assets/images/ecosystem.jpeg" alt="LEGACY INFIN8TY Ecosystem" className="w-full h-auto rounded-2xl" />
               </div>
             </div>
           </div>
@@ -222,6 +223,22 @@ export default function Home() {
               <YouTubePlayer videoId="Tz4x_O9I0VQ" title="LEGACY INFIN8TY Conference — Session 1" />
               <YouTubePlayer videoId="9HpOGHBYtwk" title="LEGACY INFIN8TY Conference — Session 2" />
             </div>
+          </div>
+        </section>
+
+        {/* ── GALLERY ── */}
+        <section id="gallery" className="py-20 sm:py-28 px-4 sm:px-6 scroll-mt-16">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12 space-y-3">
+              <span className="inline-block px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold">Gallery</span>
+              <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
+                Moments &amp; <span className="gradient-text">Highlights</span>
+              </h2>
+              <p className="text-slate-500 max-w-xl mx-auto text-sm sm:text-base">
+                A glimpse into our community events, conferences, and milestones.
+              </p>
+            </div>
+            <Gallery />
           </div>
         </section>
 
