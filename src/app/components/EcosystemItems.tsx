@@ -6,7 +6,7 @@ import {
   ShoppingBag,
   ShoppingCart,
   Briefcase,
-  Users,
+  Megaphone,
   TrendingUp,
   ArrowRight,
   Sparkles,
@@ -22,6 +22,7 @@ interface EcosystemCategory {
   stats: string;
   positionClass: string;
   mobileOrder: number;
+  file: string;
 }
 
 const categories: EcosystemCategory[] = [
@@ -35,6 +36,7 @@ const categories: EcosystemCategory[] = [
     stats: "High Growth Potential",
     positionClass: "md:top-0 md:left-1/2 md:-translate-x-1/2",
     mobileOrder: 1,
+    file: "conventional-business.md",
   },
   {
     id: "forex",
@@ -46,17 +48,19 @@ const categories: EcosystemCategory[] = [
     stats: "24/7 Market Access",
     positionClass: "md:top-1/4 md:right-4 lg:right-12 md:-translate-y-1/2",
     mobileOrder: 2,
+    file: "forex-trading.md",
   },
   {
-    id: "directselling",
-    title: "DIRECT SELLING",
-    subtitle: "Peer-to-Peer & Relationship Marketing",
-    icon: Users,
+    id: "digitalmarketing",
+    title: "DIGITAL MARKETING",
+    subtitle: "Online Advertising & Growth Strategies",
+    icon: Megaphone,
     description:
-      "Build high-performing distributor networks and earn passive income through direct consumer sales.",
-    stats: "Scalable Team Model",
+      "Master high-converting advertising, audience targeting, and multi-channel marketing campaigns.",
+    stats: "High Growth Potential",
     positionClass: "md:bottom-1/4 md:right-4 lg:right-12 md:translate-y-1/2",
     mobileOrder: 3,
+    file: "digital-marketing.md",
   },
   {
     id: "services",
@@ -68,6 +72,7 @@ const categories: EcosystemCategory[] = [
     stats: "High Margin Potential",
     positionClass: "md:bottom-0 md:left-1/2 md:-translate-x-1/2",
     mobileOrder: 4,
+    file: "services.md",
   },
   {
     id: "ecommerce",
@@ -79,6 +84,7 @@ const categories: EcosystemCategory[] = [
     stats: "Global Reach",
     positionClass: "md:bottom-1/4 md:left-4 lg:left-12 md:translate-y-1/2",
     mobileOrder: 5,
+    file: "ecommerce.md",
   },
   {
     id: "dropshipping",
@@ -90,15 +96,97 @@ const categories: EcosystemCategory[] = [
     stats: "Zero Capital Inventory",
     positionClass: "md:top-1/4 md:left-4 lg:left-12 md:-translate-y-1/2",
     mobileOrder: 6,
+    file: "dropshipping.md",
   },
 ];
 
+function renderMarkdown(text: string) {
+  const lines = text.split("\n");
+  return (
+    <div className="space-y-2 text-slate-600 text-xs sm:text-sm leading-relaxed">
+      {lines.map((line, idx) => {
+        const trimmed = line.trim();
+        if (!trimmed) return null;
+
+        if (trimmed.startsWith("### ")) {
+          return (
+            <h3 key={idx} className="text-sm sm:text-base font-extrabold text-slate-900 mt-1 mb-1.5">
+              {trimmed.replace(/^###\s+/, "")}
+            </h3>
+          );
+        }
+        if (trimmed.startsWith("#### ")) {
+          return (
+            <h4 key={idx} className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-emerald-600 mt-3 mb-1">
+              {trimmed.replace(/^####\s+/, "")}
+            </h4>
+          );
+        }
+        if (trimmed.startsWith("- ")) {
+          const content = trimmed.replace(/^-\s+/, "");
+          const parts = content.split(/(\*\*.*?\*\*)/g);
+          return (
+            <div key={idx} className="flex items-start gap-2 text-xs font-medium text-slate-700 my-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1.5 shrink-0" />
+              <div>
+                {parts.map((part, pIdx) => {
+                  if (part.startsWith("**") && part.endsWith("**")) {
+                    return (
+                      <strong key={pIdx} className="font-bold text-slate-900">
+                        {part.slice(2, -2)}
+                      </strong>
+                    );
+                  }
+                  return part;
+                })}
+              </div>
+            </div>
+          );
+        }
+
+        const parts = trimmed.split(/(\*\*.*?\*\*)/g);
+        return (
+          <p key={idx} className="text-xs sm:text-sm text-slate-600">
+            {parts.map((part, pIdx) => {
+              if (part.startsWith("**") && part.endsWith("**")) {
+                return (
+                  <strong key={pIdx} className="font-bold text-slate-900">
+                    {part.slice(2, -2)}
+                  </strong>
+                );
+              }
+              return part;
+            })}
+          </p>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function EcosystemItems() {
   const [selectedCategory, setSelectedCategory] = useState<EcosystemCategory | null>(null);
+  const [modalContent, setModalContent] = useState<string | null>(null);
+  const [isLoadingContent, setIsLoadingContent] = useState<boolean>(false);
   const [activeHover, setActiveHover] = useState<string | null>(null);
 
-  const handleSelect = (category: EcosystemCategory) => {
+  const handleSelect = async (category: EcosystemCategory) => {
     setSelectedCategory(category);
+    setModalContent(null);
+    setIsLoadingContent(true);
+    try {
+      const response = await fetch(`/assets/ecosystem/${category.file}`);
+      if (response.ok) {
+        const text = await response.text();
+        setModalContent(text);
+      } else {
+        setModalContent(category.description);
+      }
+    } catch {
+      setModalContent(category.description);
+    } finally {
+      setIsLoadingContent(false);
+    }
   };
 
   const handleBookCategory = (title: string) => {
@@ -220,7 +308,7 @@ export default function EcosystemItems() {
       {/* Modal Popup Details when item is clicked */}
       {selectedCategory && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in">
-          <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full border border-slate-200 shadow-2xl relative space-y-5 animate-fade-up">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full border border-slate-200 shadow-2xl relative space-y-5 animate-fade-up max-h-[90vh] overflow-y-auto">
             <button
               onClick={() => setSelectedCategory(null)}
               className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100 transition-colors"
@@ -243,9 +331,17 @@ export default function EcosystemItems() {
               </div>
             </div>
 
-            <p className="text-sm text-slate-600 leading-relaxed">
-              {selectedCategory.description}
-            </p>
+            {isLoadingContent ? (
+              <div className="py-8 text-center text-slate-400 text-xs font-medium animate-pulse">
+                Loading details...
+              </div>
+            ) : modalContent ? (
+              renderMarkdown(modalContent)
+            ) : (
+              <p className="text-sm text-slate-600 leading-relaxed">
+                {selectedCategory.description}
+              </p>
+            )}
 
             <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-100 space-y-2">
               <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
