@@ -4,10 +4,18 @@ Balancing a full-time career as a remote software developer taught me the value 
 Stepping into this community was a game-changer. LEGACY INFIN8TY didn’t just help me grow personally—it gave me practical, high-income skills in digital marketing and Facebook Ads. In fact, doing this part-time alongside my developer job, I earned ₱48,000 during my first month. Today, I’m living proof that with the right community, mentorship, and marketing strategies, you don't have to trade all your time to multiply your income.
 
 2. TESTIMONIALS
-    https://www.youtube.com/watch?v=9HpOGHBYtwk
+    
+    https://www.youtube.com/watch?v=_RLSrET3G1Q
+    https://www.youtube.com/watch?v=QSlq_WUekWw
+    https://www.youtube.com/watch?v=2t3ESZEmtLA
+    https://www.youtube.com/watch?v=AbnKk8LoXag
 
 3. CONFERENCE
+    https://www.youtube.com/watch?v=9HpOGHBYtwk
     https://www.youtube.com/watch?v=Tz4x_O9I0VQ
+    https://www.youtube.com/watch?v=cokTAfLdWag
+    https://www.youtube.com/watch?v=MTjUlrdtq8A
+    
 
 
 4. CONTACTS

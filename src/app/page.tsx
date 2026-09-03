@@ -200,8 +200,10 @@ export default function Home() {
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <YouTubePlayer videoId="9HpOGHBYtwk" title="Community Testimonial — Success Story 1" />
-              <YouTubePlayer videoId="Tz4x_O9I0VQ" title="Community Testimonial — Success Story 2" />
+              <YouTubePlayer videoId="_RLSrET3G1Q" title="Community Testimonial — Success Story 1" />
+              <YouTubePlayer videoId="QSlq_WUekWw" title="Community Testimonial — Success Story 2" />
+              <YouTubePlayer videoId="2t3ESZEmtLA" title="Community Testimonial — Success Story 3" />
+              <YouTubePlayer videoId="AbnKk8LoXag" title="Community Testimonial — Success Story 4" />
             </div>
           </div>
         </section>
@@ -219,8 +221,10 @@ export default function Home() {
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <YouTubePlayer videoId="Tz4x_O9I0VQ" title="LEGACY INFIN8TY Conference — Session 1" />
-              <YouTubePlayer videoId="9HpOGHBYtwk" title="LEGACY INFIN8TY Conference — Session 2" />
+              <YouTubePlayer videoId="9HpOGHBYtwk" title="LEGACY INFIN8TY Conference — Session 1" />
+              <YouTubePlayer videoId="Tz4x_O9I0VQ" title="LEGACY INFIN8TY Conference — Session 2" />
+              <YouTubePlayer videoId="cokTAfLdWag" title="LEGACY INFIN8TY Conference — Session 3" />
+              <YouTubePlayer videoId="MTjUlrdtq8A" title="LEGACY INFIN8TY Conference — Session 4" />
             </div>
           </div>
         </section>
