@@ -4,11 +4,11 @@ import { Resend } from "resend";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { fullName, mobileNumber, jobBusiness, recipientEmail, domain } = body;
+    const { fullName, mobileNumber, jobBusiness, interestedIn, recipientEmail, domain } = body;
 
-    if (!fullName || !mobileNumber || !jobBusiness) {
+    if (!fullName || !mobileNumber || !jobBusiness || !interestedIn) {
       return NextResponse.json(
-        { error: "Full Name, Mobile Number, and Job/Business are required fields." },
+        { error: "Full Name, Mobile Number, Job/Business, and Interest are required fields." },
         { status: 400 }
       );
     }
@@ -60,6 +60,10 @@ export async function POST(req: NextRequest) {
               <div class="field-row">
                 <div class="label">Job / Business</div>
                 <div class="value">${jobBusiness}</div>
+              </div>
+              <div class="field-row">
+                <div class="label">Interested In</div>
+                <div class="value">${interestedIn}</div>
               </div>
             </div>
             <div class="footer">

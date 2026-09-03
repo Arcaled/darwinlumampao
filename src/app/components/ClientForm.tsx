@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { DomainConfig } from "@/config/landing";
-import { Loader2, CheckCircle, AlertTriangle, Send, User, Phone, Briefcase } from "lucide-react";
+import { Loader2, CheckCircle, AlertTriangle, Send, User, Phone, Briefcase, Target, ChevronDown } from "lucide-react";
 
 interface ClientFormProps {
   config: DomainConfig;
@@ -14,14 +14,23 @@ const fields = [
   { id: "jobBusiness",  label: "Job or Business",      placeholder: "e.g. Store Owner, Software Engineer",    type: "text", icon: Briefcase },
 ] as const;
 
+const INTEREST_OPTIONS = [
+  "Conventional Business",
+  "Dropshipping",
+  "ECommerce",
+  "Services",
+  "Digital Marketing",
+  "Forex Trading",
+];
+
 export default function ClientForm({ config }: ClientFormProps) {
-  const [values, setValues] = useState({ fullName: "", mobileNumber: "", jobBusiness: "" });
+  const [values, setValues] = useState({ fullName: "", mobileNumber: "", jobBusiness: "", interestedIn: "" });
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!values.fullName || !values.mobileNumber || !values.jobBusiness) {
+    if (!values.fullName || !values.mobileNumber || !values.jobBusiness || !values.interestedIn) {
       setStatus("error");
       setErrorMessage("Please fill out all fields before submitting.");
       return;
@@ -37,7 +46,7 @@ export default function ClientForm({ config }: ClientFormProps) {
       const data = await res.json();
       if (res.ok) {
         setStatus("success");
-        setValues({ fullName: "", mobileNumber: "", jobBusiness: "" });
+        setValues({ fullName: "", mobileNumber: "", jobBusiness: "", interestedIn: "" });
       } else {
         setStatus("error");
         setErrorMessage(data.error || "An unexpected error occurred. Please try again.");
@@ -96,6 +105,34 @@ export default function ClientForm({ config }: ClientFormProps) {
           </div>
         </div>
       ))}
+
+      <div>
+        <label htmlFor="interestedIn" className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5">
+          IM INTERESTED IN <span className="text-emerald-500">*</span>
+        </label>
+        <div className="relative">
+          <Target className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+          <select
+            id="interestedIn"
+            value={values.interestedIn}
+            onChange={(e) => setValues((v) => ({ ...v, interestedIn: e.target.value }))}
+            required
+            className={`w-full pl-10 pr-10 py-3 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-emerald-400 transition-all appearance-none cursor-pointer ${
+              values.interestedIn ? "text-slate-900" : "text-slate-400"
+            }`}
+          >
+            <option value="" disabled hidden>
+              Select your interest...
+            </option>
+            {INTEREST_OPTIONS.map((option) => (
+              <option key={option} value={option} className="text-slate-900">
+                {option}
+              </option>
+            ))}
+          </select>
+          <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+        </div>
+      </div>
 
       <button
         type="submit"
