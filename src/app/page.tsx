@@ -178,6 +178,12 @@ export default function Home() {
             <div className="mt-16 text-center space-y-4">
               <h3 className="text-xl sm:text-2xl font-bold text-slate-800">The Ecosystem</h3>
               <p className="text-slate-500 text-sm max-w-xl mx-auto">
+                <b>Transform Your Vision Into a Scalable Empire</b>
+
+                Are you tired of juggling multiple disconnected systems to run and grow your business? Legacy Infinity International bridges the gap between traditional operations and modern commercial power by uniting six core business models into one seamless ecosystem: E-Commerce, Dropshipping, Conventional Business, Trading, Direct Selling, and Services. Whether you are expanding a retail storefront, launching online channels, or scaling direct sales networks, our unified platform gives you the infrastructure, tools, and strategic leverage to eliminate operational friction and dominate your market.
+
+                By centralizing your supply chain, trading operations, and service offerings under one intelligent roof, you eliminate overhead while unlocking exponential growth opportunities across every vertical. Experience total control over your business, faster execution, and maximized profit margins—giving you the freedom to build a lasting legacy.
+
                 A comprehensive digital business framework built to support marketers, store owners, and remote professionals.
               </p>
               <div className="mt-6 rounded-3xl overflow-hidden border border-slate-200 shadow-xl bg-white p-3 max-w-4xl mx-auto card-hover">
