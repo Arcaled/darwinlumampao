@@ -3,6 +3,7 @@ import { getLandingConfig } from "@/config/landing";
 import ClientForm from "./components/ClientForm";
 import YouTubePlayer from "./components/YouTubePlayer";
 import Gallery from "./components/Gallery";
+import EcosystemItems from "./components/EcosystemItems";
 import {
   Phone, Mail, Globe, Facebook, Twitter, Calendar,
   TrendingUp, ShieldCheck, CheckCircle2, Sparkles,
@@ -182,6 +183,7 @@ export default function Home() {
               <div className="mt-6 rounded-3xl overflow-hidden border border-slate-200 shadow-xl bg-white p-3 max-w-4xl mx-auto card-hover">
                 <img src="/assets/images/ecosystem.jpeg" alt="LEGACY INFIN8TY Ecosystem" className="w-full h-auto rounded-2xl" />
               </div>
+              <EcosystemItems />
             </div>
           </div>
         </section>
